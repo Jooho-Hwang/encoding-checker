@@ -1,0 +1,35 @@
+# Virtual environments
+/.venv/
+/venv/
+/env/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Packaging and coverage output
+/build/
+/dist/
+*.egg-info/
+/.coverage
+/htmlcov/
+
+# Local configuration
+/.env
+/.env.*
+!/.env.example
+
+# Local IDE state
+/.vs/
+/.idea/
+/.vscode/*.log
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

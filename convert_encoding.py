@@ -6,12 +6,11 @@ from charset_normalizer import from_bytes
 TARGET_EXT = {".c", ".cpp", ".h", ".hpp", ".md", ".qml", ".txt", ".tsv", ".csv", ".qrc", ".sh", ".py", ".xml", ".json", ".ps1"}
 
 TARGET_ENCODING = "utf-8"
-DEFAULT_NEWLINE = "\r\n"  # Windows (CRLF)
-SHELL_NEWLINE = "\n"      # Linux (LF)
+DEFAULT_NEWLINE = "\n"
+SHELL_NEWLINE = "\n"
 
 
 def get_target_newline(file_path):
-    """Shell script는 LF, 나머지 파일은 CRLF를 사용한다."""
     if file_path.suffix.lower() == ".sh":
         return SHELL_NEWLINE
     return DEFAULT_NEWLINE
@@ -89,7 +88,7 @@ def main(root_dir):
             if status == "success":
                 stats[old_enc] += 1
                 newline_name = (
-                    "LF" if path.suffix.lower() == ".sh" else "CRLF"
+                    "LF" if path.suffix.lower() == ".sh" else "LF"
                 )
                 print(
                     f"{path} : {status} "
