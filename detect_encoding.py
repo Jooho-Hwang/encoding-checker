@@ -3,7 +3,7 @@ from pathlib import Path
 from collections import defaultdict
 from charset_normalizer import from_bytes
 
-TARGET_EXT = {".c", ".cpp", ".h", ".hpp", ".md", ".qml", ".txt", ".tsv", ".csv", ".qrc", ".sh", ".py", ".xml", ".json", ".ps1"}
+TARGET_EXT = {".c", ".cpp", ".h", ".hpp", ".md", ".qml", ".txt", ".tsv", ".csv", ".qrc", ".sh", ".py", ".xml", ".json", ".ts"}
 
 def detect_encoding(file_path):
     try:

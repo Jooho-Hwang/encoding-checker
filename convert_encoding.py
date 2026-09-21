@@ -3,16 +3,13 @@ from pathlib import Path
 from collections import defaultdict
 from charset_normalizer import from_bytes
 
-TARGET_EXT = {".c", ".cpp", ".h", ".hpp", ".md", ".qml", ".txt", ".tsv", ".csv", ".qrc", ".sh", ".py", ".xml", ".json", ".ps1"}
+TARGET_EXT = {".c", ".cpp", ".h", ".hpp", ".md", ".qml", ".txt", ".tsv", ".csv", ".qrc", ".sh", ".py", ".xml", ".json", ".ts"}
 
 TARGET_ENCODING = "utf-8"
 DEFAULT_NEWLINE = "\n"
-SHELL_NEWLINE = "\n"
 
 
 def get_target_newline(file_path):
-    if file_path.suffix.lower() == ".sh":
-        return SHELL_NEWLINE
     return DEFAULT_NEWLINE
 
 
@@ -48,8 +45,6 @@ def convert_file(file_path):
                 except UnicodeDecodeError:
                     return "failed (decoding error)", None
 
-        # 기존 줄바꿈을 모두 LF로 정규화한 후,
-        # 파일 종류에 맞는 줄바꿈으로 저장한다.
         content = content.replace("\r\n", "\n").replace("\r", "\n")
         target_newline = get_target_newline(file_path)
 
@@ -78,7 +73,6 @@ def main(root_dir):
 
     print(f"Target Encoding: {TARGET_ENCODING}")
     print(f"Default Newline: {repr(DEFAULT_NEWLINE)}")
-    print(f"Shell Script Newline: {repr(SHELL_NEWLINE)}\n")
 
     for path in root.rglob("*"):
         if path.is_file() and path.suffix.lower() in TARGET_EXT:
@@ -88,7 +82,7 @@ def main(root_dir):
             if status == "success":
                 stats[old_enc] += 1
                 newline_name = (
-                    "LF" if path.suffix.lower() == ".sh" else "LF"
+                    "LF"
                 )
                 print(
                     f"{path} : {status} "
